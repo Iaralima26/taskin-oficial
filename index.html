@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>TASKIN - App (protótipo)</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#EF5007">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <!-- LOGIN -->
+    <section id="tela-login" class="screen active">
+      <div class="auth-wrap">
+        <div class="logo-circle">
+          <img src="./assets/images/logo.png" alt="logo TASKIN">
+        </div>
+        <h1 class="title">Bem-vindo ao <span class="brand-inline">TASKIN</span></h1>
+        <p class="sub">Encontre e contrate profissionais de confiança.</p>
+
+        <div class="input-row">
+          <span class="material-icons input-icon">email</span>
+          <input id="login-email" type="email" placeholder="E-mail">
+        </div>
+
+        <div class="input-row">
+          <span class="material-icons input-icon">lock</span>
+          <input id="login-password" type="password" placeholder="Senha">
+          <button class="icon-btn small" id="toggle-login-pass"><span class="material-icons">visibility</span></button>
+        </div>
+
+        <button id="btn-login" class="btn btn-primary full">Entrar</button>
+        <p class="muted">Ainda não tem conta? <a href="#" data-target="tela-cadastro" class="nav-link">Criar conta</a></p>
+      </div>
+    </section>
+
+    <!-- CADASTRO -->
+    <section id="tela-cadastro" class="screen">
+      <header class="app-bar">
+        <button class="back" data-target="tela-login"><span class="material-icons">arrow_back</span></button>
+        <h3>Cadastro</h3>
+      </header>
+      <div class="content">
+        <div class="card card-form">
+          <label>Nome completo</label>
+          <input id="cad-name" type="text" placeholder="Nome completo">
+
+          <label>E-mail</label>
+          <input id="cad-email" type="email" placeholder="E-mail">
+
+          <label>Senha</label>
+          <div class="input-row">
+            <span class="material-icons input-icon">lock</span>
+            <input id="cad-password" type="password" placeholder="Senha (mín. 6 caracteres)">
+            <button class="icon-btn small" id="toggle-cad-pass"><span class="material-icons">visibility</span></button>
+          </div>
+
+          <button id="btn-cad" class="btn btn-primary full">Criar conta</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOME -->
+    <section id="tela-principal" class="screen">
+      <header class="app-bar app-bar-home">
+        <h2 class="brand">TASKIN</h2>
+        <div class="search-wrap">
+          <input id="search-input" placeholder="🔎" />
+          <select id="filter-location">
+            <option value="">Todas as cidades</option>
+            <option>Tianguá</option>
+            <option>Ubajara</option>
+            <option>Viçosa do Ceará</option>
+            <option>São Benedito</option>
+            <option>Guaraciaba do Norte</option>
+            <option>Ibiapina</option>
+          </select>
+        </div>
+        <button class="icon-btn" data-target="tela-chat"><span class="material-icons">chat</span></button>
+        <button class="icon-btn" data-target="tela-perfil"><span class="material-icons">account_circle</span></button>
+      </header>
+
+      <div class="content scrollable">
+        <div class="hero-card">
+          <img src="./assets/images/baner-bg.png" alt="banner TASKIN">
+          <div class="hero-text">Procure serviços perto de você</div>
+        </div>
+
+        <section class="section">
+          <h3>Categorias</h3>
+          <div class="categories-row" id="cat-row"></div>
+        </section>
+
+        <section class="section">
+          <h3>Profissionais</h3>
+          <div id="pro-list" class="pro-list"></div>
+        </section>
+      </div>
+
+      <nav class="bottom-bar">
+        <button class="tab active" data-target="tela-principal"><span class="material-icons">home</span><span class="tab-text">Home</span></button>
+        <button class="tab" data-target="tela-categorias"><span class="material-icons">category</span><span class="tab-text">Categorias</span></button>
+        <button class="tab" data-target="tela-pagamento"><span class="material-icons">payment</span><span class="tab-text">Pagamento</span></button>
+        <button class="tab" data-target="tela-perfil"><span class="material-icons">person</span><span class="tab-text">Perfil</span></button>
+      </nav>
+    </section>
+
+    <!-- CATEGORIAS -->
+    <section id="tela-categorias" class="screen">
+      <header class="app-bar">
+        <button class="back" data-target="tela-principal"><span class="material-icons">arrow_back</span></button>
+        <h3>Categorias</h3>
+      </header>
+      <div class="content">
+        <div id="categories-grid" class="categories-grid"></div>
+      </div>
+    </section>
+
+    <!-- PROFISSIONAL (corrigido e único) -->
+    <section id="tela-profissional" class="screen">
+      <header class="app-bar">
+        <button class="back" data-target="tela-principal"><span class="material-icons">arrow_back</span></button>
+        <h3>Profissional</h3>
+      </header>
+      <div class="content">
+        <div class="card pro-detail">
+          <img id="pro-avatar" src="assets/images/tela03.png" class="avatar" alt="">
+          <h3 id="pro-name">Nome do Profissional</h3>
+          <p id="pro-desc">Categoria</p>
+          <div class="rating">⭐ <span id="pro-stars">4.8</span> (32 avaliações)</div>
+          <p id="pro-location-text">📍 Tianguá - CE</p>
+          <h4>Fotos de serviços</h4>
+          <div id="pro-portfolio" class="portfolio-grid">
+            <img src="./assets/images/serviço1.png" class="portfolio-item" alt="">
+            <img src="./assets/images/serviço2.png" class="portfolio-item" alt="">
+          </div>
+          <div class="row gap" style="margin-top: 16px;">
+            <button id="btn-contact" class="btn">Contatar</button>
+            <button id="btn-hire" class="btn">Contratar</button>
+            <a href="https://wa.me/5588993687120?text=Olá%20encontrei%20seu%20perfil%20no%20app%20TASKIN"
+              target="_blank" id="btn-whatsapp" class="btn btn-success">
+              <span class="material-icons">chat</span> Contato
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGAMENTO -->
+    <section id="tela-pagamento" class="screen">
+      <header class="app-bar">
+        <button class="back" data-target="tela-principal"><span class="material-icons">arrow_back</span></button>
+        <h3>Pagamento</h3>
+      </header>
+      <div class="content">
+        <form id="payment-form" class="card">
+          <label>Nome no cartão</label>
+          <input id="card-name" type="text">
+          <label>Nº do cartão</label>
+          <input id="card-number" type="text" maxlength="19" placeholder="4242 4242 4242 4242">
+          <div class="row">
+            <input id="card-exp" placeholder="MM/AA">
+            <input id="card-cvv" placeholder="CVV" maxlength="4">
+          </div>
+          <button class="btn btn-primary" type="submit">Pagar</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- PERFIL -->
+    <section id="tela-perfil" class="screen">
+      <header class="app-bar">
+        <button class="back" data-target="tela-principal"><span class="material-icons">arrow_back</span></button>
+        <h3>Perfil</h3>
+      </header>
+      <div class="content">
+        <div class="card">
+          <label>Nome</label>
+          <input id="profile-name" type="text">
+          <label>E-mail</label>
+          <input id="profile-email" type="email" disabled>
+          <label>Telefone</label>
+          <input id="profile-phone" type="tel">
+          <button id="save-profile" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO / CONTRATAR -->
+    <section id="tela-contato" class="screen">
+      <header class="app-bar">
+        <button class="back" data-target="tela-profissional"><span class="material-icons">arrow_back</span></button>
+        <h3>Contato</h3>
+      </header>
+      <div class="content">
+        <div class="card">
+          <label>Sua proposta</label>
+          <textarea id="hire-message" placeholder="Descreva sua proposta..."></textarea>
+          <div class="row">
+            <button id="send-hire" class="btn btn-primary">Enviar proposta</button>
+            <button class="btn btn-outline" data-target="tela-profissional">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAT -->
+    <section id="tela-chat" class="screen">
+      <header class="app-bar">
+        <button class="back" data-target="tela-principal"><span class="material-icons">arrow_back</span></button>
+        <h3>Chat</h3>
+      </header>
+      <div class="content chat-wrap">
+        <ul id="chat-messages" class="chat-messages"></ul>
+        <div class="chat-input">
+          <input id="chat-text" placeholder="Digite uma mensagem...">
+          <button id="chat-send" class="btn btn-primary"><span class="material-icons">send</span></button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+  <script>
+    if('serviceWorker' in navigator){
+      navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "TASKIN - Protótipo",
+  "short_name": "TASKIN",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#FFF7F2",
+  "theme_color": "#EF5007",
+  "icons": [
+    { "src": "assets/images/logo.png", "sizes": "250x250", "type": "image/png" },
+    { "src": "assets/images/logo.png", "sizes": "600x600", "type": "image/png" }
+  ]
+}
